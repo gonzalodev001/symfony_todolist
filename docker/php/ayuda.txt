@@ -1,0 +1,1 @@
+https://cs.symfony.com/download/php-cs-fixer-v3.phar
