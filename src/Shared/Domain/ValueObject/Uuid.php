@@ -6,7 +6,7 @@ namespace App\Shared\Domain\ValueObject;
 use Symfony\Component\Uid\UuidV4;
 use Symfony\Component\Uid\NilUuid;
 
-class UuidProvider
+class Uuid
 {
     public function __construct(private string $value)
     {
