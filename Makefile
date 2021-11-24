@@ -1,7 +1,18 @@
 #!/bin/bash
 
-DOCKER_BE = symfony-backend
+DOCKER_BE = todolist-backend
+OS = $(shell uname)
 UID = $(shell id -u)
+
+NAMESERVER_IP = $(shell ip address | grep docker0)
+
+ifeq ($(OS),Darwin)
+	NAMESERVER_IP = host.docker.internal
+else ifeq ($(NAMESERVER_IP),)
+	NAMESERVER_IP = $(shell grep nameserver /etc/resolv.conf  | cut -d ' ' -f2)
+else
+	NAMESERVER_IP = 172.17.0.1
+endif
 
 help: ## Show this help message
 	@echo 'usage: make [target]'
@@ -10,8 +21,10 @@ help: ## Show this help message
 	@egrep '^(.+)\:\ ##\ (.+)' ${MAKEFILE_LIST} | column -t -c 2 -s ':#'
 
 run: ## Start the containers
-	docker network create symfony-network || true
-	U_ID=${UID} docker-compose up -d
+	docker network create todolist-network || true
+	cp -n .env .env.local || true
+	cp -n docker-compose.yml.dist docker-compose.yml || true
+	U_ID=${UID} HOST=${NAMESERVER_IP} docker-compose up -d
 
 stop: ## Stop the containers
 	U_ID=${UID} docker-compose stop

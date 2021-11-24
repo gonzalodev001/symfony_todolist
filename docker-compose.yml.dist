@@ -1,0 +1,56 @@
+version: '3.5'
+
+services:
+  todolist-web:
+    container_name: todolist-web
+    build:
+      context: ./docker/nginx
+      args:
+        UID: $U_ID
+    ports:
+      - 260:80
+    volumes:
+      - ./public:/appdata/www/public
+    networks:
+      - todolist-network
+    depends_on:
+      - todolist-backend
+
+  todolist-backend:
+    container_name: todolist-backend
+    build:
+      context: ./docker/php
+      args:
+        UID: $U_ID
+        HOST: $HOST
+    environment:
+      PHP_IDE_CONFIG: serverName=Docker
+      PHP_XDEBUG_ENABLED: 1
+      XDEBUG_CONFIG: remote_host=$HOST remote_port=9005
+    volumes:
+      - ./:/appdata/www
+      - ~/.ssh/id_rsa:/home/appuser/.ssh/id_rsa
+    networks:
+      - todolist-network
+    depends_on:
+      - todolist-db
+
+  todolist-db:
+    container_name: todolist-db
+    image: mysql:8
+    ports:
+      - 40000:3306
+    env_file:
+      - ${PWD}/docker.env
+    command: mysqld --sql_mode="STRICT_ALL_TABLES,NO_ENGINE_SUBSTITUTION"
+    volumes:
+      - todolist-database-data:/var/lib/mysql
+    networks:
+      - todolist-network
+
+volumes:
+  todolist-database-data:
+
+networks:
+  todolist-network:
+    external: true
