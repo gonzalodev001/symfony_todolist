@@ -1,8 +1,8 @@
 version: '3.5'
 
 services:
-  symfony-web:
-    container_name: symfony-web
+  todolist-web:
+    container_name: todolist-web
     build:
       context: ./docker/nginx
       args:
@@ -12,12 +12,12 @@ services:
     volumes:
       - ./public:/appdata/www/public
     networks:
-      - symfony-network
+      - todolist-network
     depends_on:
-      - symfony-backend
+      - todolist-backend
 
-  symfony-backend:
-    container_name: symfony-backend
+  todolist-backend:
+    container_name: todolist-backend
     build:
       context: ./docker/php
       args:
@@ -31,12 +31,12 @@ services:
       - ./docker/php/xdebug-linux.ini:/usr/local/etc/php/conf.d/xdebug.ini
   #    - ~/.ssh/id_rsa:/home/appuser/.ssh/id_rsa
     networks:
-      - symfony-network
+      - todolist-network
     depends_on:
-      - symfony-db
+      - todolist-db
 
-  symfony-db:
-    container_name: symfony-db
+  todolist-db:
+    container_name: todolist-db
     image: mysql:8
     ports:
       - 40000:3306
@@ -44,13 +44,13 @@ services:
       - ${PWD}/docker.env
     command: mysqld --sql_mode="STRICT_ALL_TABLES,NO_ENGINE_SUBSTITUTION"
     volumes:
-      - symfony-database-data:/var/lib/mysql
+      - todolist-database-data:/var/lib/mysql
     networks:
-      - symfony-network
+      - todolist-network
 
 volumes:
-  symfony-database-data:
+  todolist-database-data:
 
 networks:
-  symfony-network:
+  todolist-network:
     external: true
