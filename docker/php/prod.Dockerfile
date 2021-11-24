@@ -5,7 +5,7 @@ COPY /docker/php/php.ini /usr/local/etc/php/php.ini
 RUN apt-get update \
     && apt-get install -y git acl openssl openssh-client wget zip vim librabbitmq-dev libssh-dev \
     && apt-get install -y libpng-dev zlib1g-dev libzip-dev libxml2-dev libicu-dev \
-    && docker-php-ext-install intl pdo pdo_mysql zip gd soap sockets bcmath 
+    && docker-php-ext-install intl pdo pdo_mysql zip gd soap sockets bcmath
 
 RUN pecl install -o -f redis \
     && rm -rf /tmp/pear \
@@ -19,6 +19,7 @@ WORKDIR /appdata/www
 
 ENV APP_ENV prod
 COPY /composer.* ./
+RUN composer update
 RUN composer install --no-dev
 COPY / ./
 RUN bin/console assets:install
