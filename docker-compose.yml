@@ -29,7 +29,7 @@ services:
     volumes:
       - ./:/appdata/www
       - ./docker/php/xdebug-linux.ini:/usr/local/etc/php/conf.d/xdebug.ini
-  #    - ~/.ssh/id_rsa:/home/appuser/.ssh/id_rsa
+      - ~/.ssh/id_rsa:/home/appuser/.ssh/id_rsa
     networks:
       - todolist-network
     depends_on:
