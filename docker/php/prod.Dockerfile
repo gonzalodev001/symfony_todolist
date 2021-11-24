@@ -15,7 +15,7 @@ RUN pecl install -o -f redis \
 RUN curl --insecure https://getcomposer.org/composer.phar -o /usr/bin/composer && chmod +x /usr/bin/composer
 RUN composer self-update
 
-WORKDIR /app
+WORKDIR /appdata/www
 
 ENV APP_ENV prod
 COPY /composer.* ./
