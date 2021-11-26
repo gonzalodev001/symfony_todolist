@@ -1,4 +1,4 @@
-FROM php:8-fpm AS assets
+FROM php:8.0 AS assets
 
 RUN apt-get update \
   && apt-get install -y git zip zlib1g-dev libzip-dev \
