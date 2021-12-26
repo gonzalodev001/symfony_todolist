@@ -8,6 +8,7 @@ use App\Shared\Domain\ValueObject\Uuid;
 use App\User\Domain\Exception\InvalidConfirmPassword;
 use App\User\Domain\ValueObject\Email;
 use App\User\Domain\ValueObject\Password;
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service_locator;
 
 class User
 {
@@ -43,8 +44,9 @@ class User
         return $this->password;
     }
 
-    public static function register(Uuid $id, string $name, Email $email, Password $password, Password $confirmPassword): User
+    public static function registerUser(Uuid $id, string $name, Email $email, Password $password, Password $confirmPassword): User
     {
+        self::validatePasswords($password, $confirmPassword);
         return new self ($id, $name, $email, $password);
     }
 
@@ -54,4 +56,5 @@ class User
             throw new InvalidConfirmPassword();
         }
     }
+
 }

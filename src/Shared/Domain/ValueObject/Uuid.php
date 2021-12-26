@@ -11,6 +11,7 @@ class Uuid
     public function __construct(private string $value)
     {
         $this->verify($value);
+        var_dump($this->value);
     }
 
     public static function generate(): self

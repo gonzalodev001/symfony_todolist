@@ -11,6 +11,7 @@ class Email
 
     public function __construct(private string $value)
     {
+        self::ensureIsValue($this->value);
     }
 
     public function value(): string
@@ -18,9 +19,9 @@ class Email
         return $this->value;
     }
 
-    public function ensureIsValue(string $value): void
+    public static function ensureIsValue(string $value): void
     {
-        if(filter_var($value, FILTER_VALIDATE_EMAIL)) {
+        if(!filter_var($value, FILTER_VALIDATE_EMAIL)) {
             throw new InvalidEmail($value);
         }
     }
