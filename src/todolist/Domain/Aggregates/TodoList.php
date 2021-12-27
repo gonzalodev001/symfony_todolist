@@ -4,6 +4,9 @@
 namespace App\todolist\Domain\Aggregates;
 
 
+use App\Shared\Domain\Exceptions\EmptyValue;
+use App\todolist\Domain\Exceptions\InvalidDate;
+
 class TodoList
 {
 
@@ -65,8 +68,19 @@ class TodoList
 
     public static function registerTodoList(string $id, string $title, string $details, string $date, string $state, string $userId): self
     {
-
+        self::validateEmptyValue($title,'title');
+        self::validateEmptyValue($date, 'date');
+        self::validateEmptyValue($details, 'details');
+        self::validateEmptyValue($state, 'state');
+        self::validateEmptyValue($id, 'id');
+        self::validateEmptyValue($userId, 'userId');
         return new self($id, $title, $details, $date,  $state, $userId);
+    }
 
+    public static function validateEmptyValue(string $value, string $type): void
+    {
+        if(empty($value)) {
+            throw new EmptyValue($type);
+        }
     }
 }
