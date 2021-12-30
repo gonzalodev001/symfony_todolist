@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\User\Aplication;
+namespace App\User\Application;
 
 
 use App\User\Domain\Repository\UserRepository;

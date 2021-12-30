@@ -4,7 +4,7 @@
 namespace App\Controller\User;
 
 
-use App\User\Aplication\ListAllUsers;
+use App\User\Application\ListAllUsers;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 

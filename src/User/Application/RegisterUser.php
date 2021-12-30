@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\User\Aplication;
+namespace App\User\Application;
 
 
 use App\Shared\Domain\ValueObject\Uuid;

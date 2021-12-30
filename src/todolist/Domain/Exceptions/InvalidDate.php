@@ -11,11 +11,11 @@ class InvalidDate extends DomainError
 
     public function errorCode(): string
     {
-        return 'empty_date';
+        return 'invalid_date';
     }
 
     public function errorMessage(): string
     {
-        return sprintf('The date provided is empty');
+        return sprintf('The date provided is invalid');
     }
 }

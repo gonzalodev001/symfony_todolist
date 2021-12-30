@@ -4,7 +4,7 @@
 namespace App\Controller\User;
 
 
-use App\User\Aplication\RegisterUser;
+use App\User\Application\RegisterUser;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
