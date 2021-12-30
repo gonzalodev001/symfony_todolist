@@ -12,12 +12,12 @@ use function Symfony\Component\DependencyInjection\Loader\Configurator\service_l
 
 class User
 {
-    private Uuid $id;
+    private string $id;
     private string $name;
     private Email $email;
     private Password $password;
 
-    public function __construct(Uuid $id, string $name, Email $email, Password $password)
+    public function __construct(string $id, string $name, Email $email, Password $password)
     {
         $this->id = $id;
         $this->name = $name;
@@ -25,7 +25,7 @@ class User
         $this->password = $password;
     }
 
-    public function id(): Uuid
+    public function id(): string
     {
         return $this->id;
     }
@@ -44,7 +44,7 @@ class User
         return $this->password;
     }
 
-    public static function registerUser(Uuid $id, string $name, Email $email, Password $password, Password $confirmPassword): User
+    public static function registerUser(string $id, string $name, Email $email, Password $password, Password $confirmPassword): User
     {
         self::validatePasswords($password, $confirmPassword);
         return new self ($id, $name, $email, $password);

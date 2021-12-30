@@ -20,7 +20,6 @@ class RegisterUser
 
     public function __invoke(string $id, string $name, string $email, string $password, string $confirmpassword)
     {
-        $id = new Uuid($id);
         $email = new Email($email);
         $password = new Password($password);
         $confirmPassword = new Password($confirmpassword);
