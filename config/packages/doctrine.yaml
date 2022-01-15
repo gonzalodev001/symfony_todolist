@@ -13,5 +13,5 @@ doctrine:
             AppUserDomain:
                 is_bundle: false
                 type: xml
-                dir: '%kernel.project_dir%/src/User/Infrastructure/Persistence/Doctrine/Resource/Mapping'
+                dir: '%kernel.project_dir%/src/User/Infrastructure/Persistence/Doctrine/Resources/Mapping'
                 prefix: 'App\User\Domain'

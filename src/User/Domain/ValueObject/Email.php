@@ -9,20 +9,20 @@ use App\User\Domain\Exception\InvalidEmail;
 class Email
 {
 
-    public function __construct(private string $value)
+    public function __construct(private string $email)
     {
-        self::ensureIsValue($this->value);
+        self::ensureIsValue($this->email);
     }
 
     public function value(): string
     {
-        return $this->value;
+        return $this->email;
     }
 
-    public static function ensureIsValue(string $value): void
+    public static function ensureIsValue(string $email): void
     {
-        if(!filter_var($value, FILTER_VALIDATE_EMAIL)) {
-            throw new InvalidEmail($value);
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new InvalidEmail($email);
         }
     }
 }

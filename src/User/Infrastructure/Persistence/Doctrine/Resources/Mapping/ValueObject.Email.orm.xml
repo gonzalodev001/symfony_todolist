@@ -4,12 +4,9 @@
                     xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                         https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="App\User\Domain\User" table="user">
-        <id name="id" type="string" column="id"  length="36" unique="true"/>
+    <embeddable name="App\User\Domain\ValueObject\Email">
 
-        <field name="name" type="string" length="70" column="name"/>
-        <embedded name="email" class="App\User\Domain\ValueObject\Email" use-column-prefix="false"/>
-        <embedded name="password" class="App\User\Domain\ValueObject\Password"/>
-    </entity>
+        <field name="email" type="string" length="70" column="email"/>
+    </embeddable>
 
 </doctrine-mapping>

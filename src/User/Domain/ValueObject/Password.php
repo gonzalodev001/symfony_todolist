@@ -10,20 +10,20 @@ class Password
 {
     const pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/';
 
-    public function __construct(private string $pass)
+    public function __construct(private string $password)
     {
-        self::validatePassword($pass);
+        self::validatePassword($password);
     }
 
     public function password(): string
     {
-        return $this->pass;
+        return $this->password;
     }
 
-    public static function validatePassword(string $pass): void
+    public static function validatePassword(string $password): void
     {
-        if (!preg_match(self::pattern, $pass)) {
-            throw new InvalidPassword($pass);
+        if (!preg_match(self::pattern, $password)) {
+            throw new InvalidPassword($password);
         }
     }
 }
