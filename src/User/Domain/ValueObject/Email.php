@@ -14,7 +14,7 @@ class Email
         self::ensureIsValue($this->email);
     }
 
-    public function value(): string
+    public function email(): string
     {
         return $this->email;
     }

@@ -8,14 +8,14 @@ use App\Shared\Domain\ValueObject\Uuid;
 use App\User\Domain\Exception\InvalidConfirmPassword;
 use App\User\Domain\ValueObject\Email;
 use App\User\Domain\ValueObject\Password;
-use function Symfony\Component\DependencyInjection\Loader\Configurator\service_locator;
+
 
 class User
 {
-    private string $id;
-    private string $name;
-    private Email $email;
-    private Password $password;
+    protected string $id;
+    protected string $name;
+    protected Email $email;
+    protected Password $password;
 
     public function __construct(string $id, string $name, Email $email, Password $password)
     {

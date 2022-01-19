@@ -26,4 +26,9 @@ class Password
             throw new InvalidPassword($password);
         }
     }
+
+    public function hashed(string $pass): void
+    {
+        $this->password = $pass;
+    }
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doctrine-mapping   xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                        https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\User\Infrastructure\SymfonyUser\SymfonyUser" table="user">
+        <id name="id" type="string" column="id"  length="36"/>
+
+        <field name="name" type="string" length="70" column="name"/>
+        <!--<embedded name="email" class="App\User\Domain\ValueObject\Email" column-prefix="false"/>-->
+        <field name="symfonyEmail" type="string" length="70" column="email"/>
+        <field name="hashedPassword" type="string" length="100" column="password"/>
+        <!--<embedded name="password" class="App\User\Domain\ValueObject\Password" column-prefix="false"/>-->
+    </entity>
+
+</doctrine-mapping>

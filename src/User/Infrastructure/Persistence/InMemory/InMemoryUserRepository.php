@@ -7,7 +7,7 @@ namespace App\User\Infrastructure\Persistence\InMemory;
 use App\User\Domain\Repository\UserRepository;
 use App\User\Domain\User;
 
-class InMemoryUserRepository implements UserRepository
+class InMemoryUserRepository
 {
 
     private array $users = [];
