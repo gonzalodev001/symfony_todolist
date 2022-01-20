@@ -77,6 +77,22 @@ class SymfonyUser extends User implements UserInterface, PasswordAuthenticatedUs
         return $this->roles;
     }
 
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt(): \DateTime
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt(): \DateTime
+    {
+        return $this->updatedAt;
+    }
+
     public function setPassword(string $hashedPassword): void
     {
         $this->hashedPassword = $hashedPassword;

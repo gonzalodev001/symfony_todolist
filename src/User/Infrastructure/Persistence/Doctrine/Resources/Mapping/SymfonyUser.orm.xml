@@ -11,6 +11,14 @@
         <!--<embedded name="email" class="App\User\Domain\ValueObject\Email" column-prefix="false"/>-->
         <field name="symfonyEmail" type="string" length="70" column="email"/>
         <field name="hashedPassword" type="string" length="100" column="password"/>
+        <field name="createdAt" type="datetime"  column="createdAt"/>
+        <field name="updatedAt" type="datetime" column="updatedAt"/>
+        <field name="roles" type="json" column="roles"/>
+        <lifecycle-callbacks>
+            <lifecycle-callback type="preUpdate" method="markAsUpdated">
+
+            </lifecycle-callback>
+        </lifecycle-callbacks>
         <!--<embedded name="password" class="App\User\Domain\ValueObject\Password" column-prefix="false"/>-->
     </entity>
 

@@ -16,6 +16,8 @@ class User
     protected string $name;
     protected Email $email;
     protected Password $password;
+    protected \DateTime $createdAt;
+    protected \DateTime $updatedAt;
 
     public function __construct(string $id, string $name, Email $email, Password $password)
     {
@@ -23,6 +25,8 @@ class User
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
+        $this->createdAt = new \DateTime();
+        $this->markAsUpdated();
     }
 
     public function id(): string
@@ -55,6 +59,11 @@ class User
         if($password->password() !== $confirmPassword->password()) {
             throw new InvalidConfirmPassword();
         }
+    }
+
+    public function markAsUpdated(): void
+    {
+        $this->updatedAt = new \DateTime();
     }
 
 }
