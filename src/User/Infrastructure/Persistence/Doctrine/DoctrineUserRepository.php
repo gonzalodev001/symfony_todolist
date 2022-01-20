@@ -38,4 +38,8 @@ class DoctrineUserRepository implements UserRepository
         return $repository->findAll();
     }
 
+    public function addRole(string $id, string $role): void
+    {
+        // TODO: Implement addRole() method.
+    }
 }
