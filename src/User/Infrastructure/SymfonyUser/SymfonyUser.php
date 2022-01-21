@@ -98,6 +98,25 @@ class SymfonyUser extends User implements UserInterface, PasswordAuthenticatedUs
         $this->hashedPassword = $hashedPassword;
     }
 
+    /**
+     * @param array $roles
+     */
+    public function setRoles(array $roles): void
+    {
+        $this->roles = $roles;
+    }
+
+    /**
+     * @param string $role
+     * @return array
+     */
+    public function addRole(string $role): void
+    {
+        $this->roles[] = 'ROLE'. filter_var($role, FILTER_SANITIZE_STRING);
+        $this->setRoles($this->roles);
+        //return $this->roles;
+    }
+
     public function getSalt()
     {
         // TODO: Implement getSalt() method.

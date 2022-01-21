@@ -9,6 +9,7 @@ use App\User\Domain\User;
 use App\User\Infrastructure\SymfonyUser\SymfonyUser;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 
 
 class DoctrineUserRepository implements UserRepository
@@ -40,6 +41,15 @@ class DoctrineUserRepository implements UserRepository
 
     public function addRole(string $id, string $role): void
     {
-        // TODO: Implement addRole() method.
+        $repository = $this->entityManager->getRepository(SymfonyUser::class);
+        $user = $repository->find($id);
+
+        if(!$user) {
+            throw new UserNotFoundException('User not found');
+        }
+        //$roles =
+        $user->addRole(strtoupper($role));
+        //$user->setRoles($roles);
+        $this->entityManager->flush();
     }
 }
