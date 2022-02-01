@@ -47,9 +47,8 @@ class DoctrineUserRepository implements UserRepository
         if(!$user) {
             throw new UserNotFoundException('User not found');
         }
-        //$roles =
-        $user->addRole(strtoupper($role));
-        //$user->setRoles($roles);
+        $roles = $user->addRole(strtoupper($role));
+        $user->setRoles($roles);
         $this->entityManager->flush();
     }
 }

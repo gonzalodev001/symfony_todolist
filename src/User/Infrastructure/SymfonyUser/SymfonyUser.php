@@ -18,7 +18,6 @@ class SymfonyUser extends User implements UserInterface, PasswordAuthenticatedUs
 
     private string $hashedPassword;
     private string $symfonyEmail;
-    private array $roles;
 
     public function __construct(string $id, string $name, string $symfonyEmail, string $hashedPassword)
     {
@@ -28,7 +27,7 @@ class SymfonyUser extends User implements UserInterface, PasswordAuthenticatedUs
         $this->name = $name;
         $this->symfonyEmail = $symfonyEmail;
         $this->hashedPassword = $hashedPassword;
-        $this->roles[] = 'ROLE_USER';
+        //$this->roles[] = 'ROLE_USER';
         parent::__construct($id, $name, $email, $password);
     }
 
@@ -110,12 +109,12 @@ class SymfonyUser extends User implements UserInterface, PasswordAuthenticatedUs
      * @param string $role
      * @return array
      */
-    public function addRole(string $role): void
+    /*public function addRole(string $role): void
     {
         $this->roles[] = 'ROLE'. filter_var($role, FILTER_SANITIZE_STRING);
         $this->setRoles($this->roles);
         //return $this->roles;
-    }
+    }*/
 
     public function getSalt()
     {

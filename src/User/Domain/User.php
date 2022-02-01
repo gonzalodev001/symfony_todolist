@@ -18,6 +18,7 @@ class User
     protected Password $password;
     protected \DateTime $createdAt;
     protected \DateTime $updatedAt;
+    protected array $roles;
 
     public function __construct(string $id, string $name, Email $email, Password $password)
     {
@@ -26,6 +27,7 @@ class User
         $this->email = $email;
         $this->password = $password;
         $this->createdAt = new \DateTime();
+        $this->roles[] = 'ROLE_USER';
         $this->markAsUpdated();
     }
 
@@ -46,6 +48,17 @@ class User
     public function password(): Password
     {
         return $this->password;
+    }
+
+    public function roles(): array
+    {
+        return $this->roles;
+    }
+
+    protected function addRole(string $role): array
+    {
+        $this->roles[] = 'ROLE_'.filter_var($role, FILTER_SANITIZE_STRING);
+        return $this->roles();
     }
 
     public static function registerUser(string $id, string $name, Email $email, Password $password, Password $confirmPassword): User
