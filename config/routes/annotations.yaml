@@ -2,6 +2,12 @@ controllers:
     resource: ../../src/Controller/
     type: annotation
 
+api_controllers:
+    resource: ../../src/Controller/Api/
+    prefix: /api/
+    name_prefix: todo_list_
+    type: annotation
+
 kernel:
     resource: ../../src/Kernel.php
     type: annotation

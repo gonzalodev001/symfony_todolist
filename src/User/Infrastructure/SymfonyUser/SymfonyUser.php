@@ -116,24 +116,21 @@ class SymfonyUser extends User implements UserInterface, PasswordAuthenticatedUs
         //return $this->roles;
     }*/
 
-    public function getSalt()
+    public function getSalt(): void
     {
-        // TODO: Implement getSalt() method.
     }
 
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
-        // TODO: Implement eraseCredentials() method.
     }
 
-    public function getUsername()
+    public function getUsername(): string
     {
-        // TODO: Implement getUsername() method.
+        return $this->symfonyEmail;
     }
 
     public function __call(string $name, array $arguments)
     {
-        // TODO: Implement @method string getUserIdentifier()
     }
 
 }
