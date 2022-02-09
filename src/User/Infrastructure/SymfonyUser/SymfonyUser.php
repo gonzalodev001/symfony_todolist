@@ -109,12 +109,10 @@ class SymfonyUser extends User implements UserInterface, PasswordAuthenticatedUs
      * @param string $role
      * @return array
      */
-    /*public function addRole(string $role): void
+    public function addRole(string $role): array
     {
-        $this->roles[] = 'ROLE'. filter_var($role, FILTER_SANITIZE_STRING);
-        $this->setRoles($this->roles);
-        //return $this->roles;
-    }*/
+        return parent::addRole($role);
+    }
 
     public function getSalt(): void
     {
