@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Controller\User;
+namespace App\Controller\Api\User;
 
 
 use App\User\Application\RegisterUser;
@@ -13,11 +13,10 @@ use Symfony\Component\Uid\Uuid;
 
 class RegisterUserController
 {
-
     public function __construct(private RegisterUser $registerUser)
     {
     }
-    #[Route('/create-user/', name: 'user_register', methods: ['POST'])]
+    #[Route('/create-user', name: 'user_register', methods: ['POST'])]
     public function __invoke(Request $request): JsonResponse
     {
         $id = Uuid::v4()->toRfc4122();
@@ -30,4 +29,5 @@ class RegisterUserController
         );
         return new JsonResponse('ok', Response::HTTP_OK);
     }
+
 }

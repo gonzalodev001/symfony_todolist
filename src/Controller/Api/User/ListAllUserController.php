@@ -1,13 +1,12 @@
 <?php
 
 
-namespace App\Controller\User;
+namespace App\Controller\Api\User;
 
 
 use App\User\Application\ListAllUsers;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ListAllUserController extends AbstractController
@@ -21,4 +20,5 @@ class ListAllUserController extends AbstractController
         return $this->json($this->listAllUsers->__invoke());
 
     }
+
 }
