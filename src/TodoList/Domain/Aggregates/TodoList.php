@@ -7,6 +7,7 @@ namespace App\todolist\Domain\Aggregates;
 use App\Shared\Domain\Exceptions\EmptyValue;
 use App\Shared\Domain\Validators\ValidateDate;
 use App\todolist\Domain\Exceptions\InvalidDate;
+use App\TodoList\Domain\Exceptions\MinorDate;
 
 class TodoList
 {
@@ -18,15 +19,7 @@ class TodoList
     private string $state;
     private string $userId;
 
-    /**
-     * TodoList constructor.
-     * @param string $id
-     * @param string $title
-     * @param string $details
-     * @param string $date
-     * @param string $state
-     * @param string $userId
-     */
+
     public function __construct(string $id, string $title, string $details, string $date, string $state, string $userId)
     {
         $this->id = $id;
@@ -90,6 +83,16 @@ class TodoList
     {
         if(!ValidateDate::isValidDate($date)) {
             throw new InvalidDate();
+        }
+    }
+
+    public function validateMinorDate(string $date): void
+    {
+        $currentDate = strtotime(date("Y-m-d H:i:s", time()));
+        $intoDate = strtotime($date);
+
+        if($currentDate > $intoDate) {
+            throw new MinorDate();
         }
     }
 }

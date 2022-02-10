@@ -20,7 +20,7 @@ class AddRolToUserController
     public function __invoke(Request $request): JsonResponse
     {
         $data = $request->toArray();
-  
+
         $this->addRoleToUser->__invoke(
             $data['id'],
             $data['role']
