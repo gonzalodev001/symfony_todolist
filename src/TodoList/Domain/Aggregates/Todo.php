@@ -1,24 +1,21 @@
 <?php
 
 
-namespace App\todolist\Domain\Aggregates;
-
+namespace App\TodoList\Domain\Aggregates;
 
 use App\Shared\Domain\Exceptions\EmptyValue;
 use App\Shared\Domain\Validators\ValidateDate;
-use App\todolist\Domain\Exceptions\InvalidDate;
+use App\TodoList\Domain\Exceptions\InvalidDate;
 use App\TodoList\Domain\Exceptions\MinorDate;
 
-class TodoList
+class Todo
 {
-
     private string $id;
     private string $title;
     private string $details;
     private string $date;
     private string $state;
     private string $userId;
-
 
     public function __construct(string $id, string $title, string $details, string $date, string $state, string $userId)
     {
@@ -69,6 +66,7 @@ class TodoList
         self::validateEmptyValue($id, 'id');
         self::validateEmptyValue($userId, 'userId');
         self::validateDate($date);
+        self::validateMinorDate($date);
         return new self($id, $title, $details, $date,  $state, $userId);
     }
 
@@ -86,7 +84,7 @@ class TodoList
         }
     }
 
-    public function validateMinorDate(string $date): void
+    public static function validateMinorDate(string $date): void
     {
         $currentDate = strtotime(date("Y-m-d H:i:s", time()));
         $intoDate = strtotime($date);
@@ -95,4 +93,5 @@ class TodoList
             throw new MinorDate();
         }
     }
+
 }

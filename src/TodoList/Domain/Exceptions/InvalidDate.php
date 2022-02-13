@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\todolist\Domain\Exceptions;
+namespace App\TodoList\Domain\Exceptions;
 
 
 use App\Shared\Domain\DomainError;

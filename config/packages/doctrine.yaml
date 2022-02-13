@@ -20,5 +20,11 @@ doctrine:
                 type: xml
                 dir: '%kernel.project_dir%/src/User/Infrastructure/Persistence/Doctrine/Resources/Mapping'
                 prefix: 'App\User\Infrastructure\SymfonyUser'
+            AppTodoInfrastructureSymfonyTodo:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/src/TodoList/Infrastructure/Persistence/Doctrine/Resources/Mapping'
+                prefix: 'App\TodoList\Infrastructure\Symfony\Entity'
+
 
 

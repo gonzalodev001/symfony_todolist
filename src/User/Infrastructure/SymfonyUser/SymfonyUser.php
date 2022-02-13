@@ -7,6 +7,8 @@ namespace App\User\Infrastructure\SymfonyUser;
 use App\User\Domain\User;
 use App\User\Domain\ValueObject\Email;
 use App\User\Domain\ValueObject\Password;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -18,6 +20,7 @@ class SymfonyUser extends User implements UserInterface, PasswordAuthenticatedUs
 
     private string $hashedPassword;
     private string $symfonyEmail;
+    private Collection $todos;
 
     public function __construct(string $id, string $name, string $symfonyEmail, string $hashedPassword)
     {
@@ -27,7 +30,7 @@ class SymfonyUser extends User implements UserInterface, PasswordAuthenticatedUs
         $this->name = $name;
         $this->symfonyEmail = $symfonyEmail;
         $this->hashedPassword = $hashedPassword;
-        //$this->roles[] = 'ROLE_USER';
+        $this->todos = new ArrayCollection();
         parent::__construct($id, $name, $email, $password);
     }
 
@@ -45,6 +48,14 @@ class SymfonyUser extends User implements UserInterface, PasswordAuthenticatedUs
     public function getId(): string
     {
         return $this->id;
+    }
+
+    /**
+     * @return ArrayCollection|Collection
+     */
+    public function getTodos(): ArrayCollection|Collection
+    {
+        return $this->todos;
     }
 
     /**

@@ -8,6 +8,7 @@ use App\Shared\Domain\ValueObject\Uuid;
 use App\User\Domain\Exception\InvalidConfirmPassword;
 use App\User\Domain\ValueObject\Email;
 use App\User\Domain\ValueObject\Password;
+use DateTime;
 
 
 class User
@@ -16,8 +17,8 @@ class User
     protected string $name;
     protected Email $email;
     protected Password $password;
-    protected \DateTime $createdAt;
-    protected \DateTime $updatedAt;
+    protected DateTime $createdAt;
+    protected DateTime $updatedAt;
     protected array $roles;
 
     public function __construct(string $id, string $name, Email $email, Password $password)
@@ -26,7 +27,7 @@ class User
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
-        $this->createdAt = new \DateTime();
+        $this->createdAt = new DateTime();
         $this->roles[] = 'ROLE_USER';
         $this->markAsUpdated();
     }
@@ -76,7 +77,7 @@ class User
 
     public function markAsUpdated(): void
     {
-        $this->updatedAt = new \DateTime();
+        $this->updatedAt = new DateTime();
     }
 
 }
