@@ -14,7 +14,7 @@
         <field name="createdAt" type="datetime"  column="createdAt"/>
         <field name="updatedAt" type="datetime" column="updatedAt"/>
         <field name="roles" type="json" column="roles"/>
-        <one-to-many field="todos" target-entity="App\TodoList\Infrastructure\Symfony\Entity\SymfonyTodo" mapped-by="user"/>
+        <one-to-many field="todos" target-entity="App\Todo\Infrastructure\Symfony\Entity\SymfonyTodo" mapped-by="user"/>
 
         <lifecycle-callbacks>
             <lifecycle-callback type="preUpdate" method="markAsUpdated">

@@ -1,12 +1,12 @@
 <?php
 
 
-namespace App\TodoList\Domain\Exceptions;
+namespace App\Todo\Domain\Exceptions;
 
 
 use App\Shared\Domain\DomainError;
 
-class InvalidDate extends DomainError
+class InvalidDate extends  DomainError
 {
 
     public function errorCode(): string

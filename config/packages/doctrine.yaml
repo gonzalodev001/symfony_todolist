@@ -23,8 +23,8 @@ doctrine:
             AppTodoInfrastructureSymfonyTodo:
                 is_bundle: false
                 type: xml
-                dir: '%kernel.project_dir%/src/TodoList/Infrastructure/Persistence/Doctrine/Resources/Mapping'
-                prefix: 'App\TodoList\Infrastructure\Symfony\Entity'
+                dir: '%kernel.project_dir%/src/Todo/Infrastructure/Persistence/Doctrine/Resources/Mapping'
+                prefix: 'App\Todo\Infrastructure\Symfony\Entity'
 
 
 

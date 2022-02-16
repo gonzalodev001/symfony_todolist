@@ -1,12 +1,13 @@
 <?php
 
 
-namespace App\TodoList\Domain\Aggregates;
+namespace App\Todo\Domain\Aggregates;
+
 
 use App\Shared\Domain\Exceptions\EmptyValue;
 use App\Shared\Domain\Validators\ValidateDate;
-use App\TodoList\Domain\Exceptions\InvalidDate;
-use App\TodoList\Domain\Exceptions\MinorDate;
+use App\Todo\Domain\Exceptions\InvalidDate;
+use App\Todo\Domain\Exceptions\MinorDate;
 
 class Todo
 {
@@ -66,7 +67,9 @@ class Todo
         self::validateEmptyValue($id, 'id');
         self::validateEmptyValue($userId, 'userId');
         self::validateDate($date);
+        self::validateTime($date);
         self::validateMinorDate($date);
+
         return new self($id, $title, $details, $date,  $state, $userId);
     }
 
@@ -91,6 +94,13 @@ class Todo
 
         if($currentDate > $intoDate) {
             throw new MinorDate();
+        }
+    }
+
+    public static function validateTime(string $time): void
+    {
+        if(!ValidateDate::isValidTime($time)) {
+            throw new InvalidDate();
         }
     }
 

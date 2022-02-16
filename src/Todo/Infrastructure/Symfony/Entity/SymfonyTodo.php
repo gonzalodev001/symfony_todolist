@@ -1,29 +1,31 @@
 <?php
 
 
-namespace App\TodoList\Infrastructure\Symfony\Entity;
+namespace App\Todo\Infrastructure\Symfony\Entity;
 
 
 use App\User\Infrastructure\SymfonyUser\SymfonyUser;
+use DateTime;
 
 class SymfonyTodo
 {
+
     private string $id;
     private string $title;
     private string $details;
-    private string $date;
+    private DateTime $date;
     private string $state;
-    private $user;
+    private SymfonyUser $user;
 
     /**
      * SymfonyTodo constructor.
      * @param string $id
      * @param string $title
      * @param string $details
-     * @param string $date
+     * @param DateTime $date
      * @param string $state
      */
-    public function __construct(string $id, string $title, string $details, string $date, string $state)
+    public function __construct(string $id, string $title, string $details, DateTime $date, string $state)
     {
         $this->id = $id;
         $this->title = $title;
@@ -37,10 +39,10 @@ class SymfonyTodo
         return $this->user;
     }
 
-    public function setUser(?SymfonyUser $user): self
+    public function setUser(SymfonyUser $user): void
     {
+        $user->addTodo($this);
         $this->user = $user;
-        return $this;
     }
 
     /**
@@ -84,17 +86,17 @@ class SymfonyTodo
     }
 
     /**
-     * @return string
+     * @return DateTime
      */
-    public function getDate(): string
+    public function getDate(): DateTime
     {
         return $this->date;
     }
 
     /**
-     * @param string $date
+     * @param DateTime $date
      */
-    public function setDate(string $date): void
+    public function setDate(DateTime $date): void
     {
         $this->date = $date;
     }
@@ -114,9 +116,5 @@ class SymfonyTodo
     {
         $this->state = $state;
     }
-
-
-
-
 
 }

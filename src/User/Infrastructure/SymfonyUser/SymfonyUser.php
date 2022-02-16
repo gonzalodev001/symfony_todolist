@@ -4,6 +4,7 @@
 namespace App\User\Infrastructure\SymfonyUser;
 
 
+use App\Todo\Infrastructure\Symfony\Entity\SymfonyTodo;
 use App\User\Domain\User;
 use App\User\Domain\ValueObject\Email;
 use App\User\Domain\ValueObject\Password;
@@ -123,6 +124,11 @@ class SymfonyUser extends User implements UserInterface, PasswordAuthenticatedUs
     public function addRole(string $role): array
     {
         return parent::addRole($role);
+    }
+
+    public function addTodo(SymfonyTodo $todo): void
+    {
+        $this->todos->add($todo);
     }
 
     public function getSalt(): void
